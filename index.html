@@ -7,7 +7,9 @@
     <title>Guess the number</title>
   </head>
   <body class="lightMode">
-    <button class="toggleDarkMode lightMode" id="toggleDarkMode">Dark Mode</button>
+    <button class="toggleDarkMode lightMode" id="toggleDarkMode">
+      Dark Mode
+    </button>
     <h1>Guess the number</h1>
     <p>
       Guess the number by putting your number of choice in the textbox and
@@ -16,17 +18,24 @@
       <br />
       The generated number can be up to 1,000.
     </p>
-    <br>
+    <br />
     <label id="difficulty">
       Select max number:
-      <label for="difficulty"><input value="100" type="radio" name="difficulty"> 100</input></label>
-      <label for="difficulty"><input value="1000" type="radio" name="difficulty" checked> 1,000</input></label>
-      <label for="difficulty"><input value="10000" type="radio" name="difficulty"> 10,000</input></label>
+      <label for="difficulty100"
+        ><input value="100" type="radio" name="difficulty" /> 100</label
+      >
+      <label for="difficulty1000"
+        ><input value="1000" type="radio" name="difficulty" checked />
+        1,000</label
+      >
+      <label for="difficulty10000"
+        ><input value="10000" type="radio" name="difficulty" /> 10,000</label
+      >
     </label>
-    <br>
+    <br />
     <p class="hint" id="hint">Hint: -</p>
-    <input name="gn" class="gn" id="gn" autocomplete="off"></input>
-    <br>
+    <input name="gn" class="gn" id="gn" autocomplete="off" />
+    <br />
     <p id="timesGuessed">Tries: 0</p>
     <br />
     <button id="submitBtn">Submit</button>
