@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+body {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  background-color: white;
+  color: black;
+  transition: 0.2s;
+}
+
+.gn {
+  font-size: 48px;
+  width: 150px;
+  text-align: center;
+}
+
+.darkMode {
+  background-color: black;
+  color: white;
+}
+
+.lightMode {
+  background-color: white;
+  color: black;
+}
+
+.toggleDarkMode {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+button {
+  background-color: #00aa00;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  transition: 0.2s;
+}
+
+button:hover {
+  opacity: 0.7;
+}
+
+.toggleDarkMode.lightMode {
+  background-color: black;
+  color: white;
+}
+
+.toggleDarkMode.darkMode {
+  background-color: white;
+  color: black;
+}
