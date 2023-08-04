@@ -50,8 +50,10 @@ submitBtn.onclick = async () => {
   await wait(500);
 
   // input type not number
-  if (typeof guessedNum.value !== 'number')
+  if (typeof guessedNum.value !== 'number') {
     hint.textContent = "Error: That's not a number!";
+    return;
+  }
 
   // number exceeded limit
   if (answer > maxNum) {
