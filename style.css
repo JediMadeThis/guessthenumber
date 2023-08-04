@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap');
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Lato", sans-serif;
   text-align: center;
   background-color: white;
   color: black;
@@ -39,6 +39,7 @@ button {
   border: none;
   border-radius: 30px;
   transition: 0.2s;
+  font-family: "Lato", sans-serif;
 }
 
 button:hover {
