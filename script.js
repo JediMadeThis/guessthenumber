@@ -5,6 +5,8 @@ const newGameBtn = document.getElementById('newGameBtn');
 const darkModeBtn = document.getElementById('toggleDarkMode');
 const timesGuessed = document.getElementById('timesGuessed');
 
+const userDarkMode = window.matchMedia('(prefers-color-scheme:dark)').matches;
+
 guessedNum.addEventListener('input', (event) => {
   const maxLength = 5;
   const originalText = event.target.value;
@@ -44,15 +46,16 @@ Array.prototype.forEach.call(radios, function (radio) {
 
 // on submit
 submitBtn.onclick = async () => {
+  // if nothing is in the textbox, returns nothing
+  if (!guessedNum.value) return;
+
+  // if input type not number
+  if (!/^\d+$/.test(guessedNum.value)) return;
+
   const answer = Number(guessedNum.value);
   hint.innerHTML = 'Hint: <em>Thinking...</em>';
 
   await wait(500);
-
-  // input type not number
-  if (typeof guessedNum !== 'number') {
-    hint.textContent = "Error: That's not a number!";
-  }
 
   // number exceeded limit
   if (answer > maxNum) {
@@ -72,17 +75,18 @@ submitBtn.onclick = async () => {
     tries++;
   }
 
-  // update tries
-  timesGuessed.textContent = `Tries: ${tries}`;
-
   // on win
   if (answer === num) {
+    tries++;
     hint.textContent = 'You won!';
 
     guessedNum.setAttribute('disabled', null);
     submitBtn.hidden = true;
     newGameBtn.hidden = false;
   }
+
+  // update tries
+  timesGuessed.textContent = `Tries: ${tries}`;
 };
 
 // Reloads website when "New Game" button clicked.
@@ -98,34 +102,45 @@ guessedNum.addEventListener('keypress', (event) => {
   }
 });
 
-// Dark mode implementation
-let darkMode = false;
+// Dark mode
+if (userDarkMode) darkMode();
 
 darkModeBtn.onclick = () => {
   let element = document.body;
 
-  if (darkMode) {
-    darkMode = false;
-
-    element.classList.remove('darkMode');
-    element.classList.add('lightMode');
-
-    darkModeBtn.classList.add('lightMode');
-    darkModeBtn.classList.remove('darkMode');
-
-    darkModeBtn.textContent = 'Dark Mode';
-  } else {
-    darkMode = true;
-
-    element.classList.remove('lightMode');
-    element.classList.add('darkMode');
-
-    darkModeBtn.classList.add('darkMode');
-    darkModeBtn.classList.remove('lightMode');
-
-    darkModeBtn.textContent = 'Light Mode';
-  }
+  if (element.classList.contains('darkMode')) lightMode();
+  else darkMode();
 };
+
+function darkMode() {
+  let element = document.body;
+
+  element.classList.remove('lightMode');
+  element.classList.add('darkMode');
+
+  darkModeBtn.classList.add('darkMode');
+  darkModeBtn.classList.remove('lightMode');
+
+  darkModeBtn.textContent = 'Light Mode';
+}
+
+function lightMode() {
+  let element = document.body;
+
+  element.classList.remove('darkMode');
+  element.classList.add('lightMode');
+
+  darkModeBtn.classList.add('lightMode');
+  darkModeBtn.classList.remove('darkMode');
+
+  darkModeBtn.textContent = 'Dark Mode';
+}
+
+// hide content before page loads
+document.addEventListener('DOMContentLoaded', () => {
+  let element = document.body;
+  element.hidden = false;
+});
 
 // wait function (delay)
 function wait(duration) {
